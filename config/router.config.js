@@ -31,6 +31,13 @@ const routerConfig = [ //umi 的路由基于 react-router@5 实现，配置和 r
         exact: true,
         icon: 'SettingOutlined',
         component: '@/pages/form'
+      },
+      {
+        path: '/form',
+        name: '测试',
+        exact: true,
+        icon: 'SettingOutlined',
+        component: '@/pages/form'
       }
     ]
   },

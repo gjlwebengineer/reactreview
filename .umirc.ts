@@ -1,10 +1,10 @@
 /*
  * @Author: jinli
  * @Date: 2023-02-09 09:17:54
- * @LastEditTime: 2023-02-09 14:32:04
+ * @LastEditTime: 2023-02-11 21:26:42
  * @LastEditors: jinli
  * @Description: 
- * @FilePath: \my-umi\.umirc.ts
+ * @FilePath: \reactreview\.umirc.ts
  */
 import { defineConfig } from 'umi';
 
@@ -45,6 +45,13 @@ export default defineConfig({
         {
           path: '/form',
           name: '表单',
+          exact: true,
+          icon: 'SettingOutlined',
+          component: '@/pages/form'
+        },
+        {
+          path: '/form',
+          name: '测试',
           exact: true,
           icon: 'SettingOutlined',
           component: '@/pages/form'
