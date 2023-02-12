@@ -1,10 +1,10 @@
 /*
  * @Author: jinli
  * @Date: 2023-02-09 10:25:14
- * @LastEditTime: 2023-02-09 11:10:40
+ * @LastEditTime: 2023-02-12 15:24:53
  * @LastEditors: jinli
  * @Description: 
- * @FilePath: \my-umi\config\router.config.js
+ * @FilePath: \reactreview\config\router.config.js
  */
 const routerConfig = [ //umi 的路由基于 react-router@5 实现，配置和 react-router 基本一致
   {
@@ -34,7 +34,7 @@ const routerConfig = [ //umi 的路由基于 react-router@5 实现，配置和 r
       },
       {
         path: '/form',
-        name: '测试',
+        name: '测试111',
         exact: true,
         icon: 'SettingOutlined',
         component: '@/pages/form'
