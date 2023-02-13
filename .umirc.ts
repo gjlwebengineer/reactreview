@@ -1,7 +1,7 @@
 /*
  * @Author: jinli
  * @Date: 2023-02-09 09:17:54
- * @LastEditTime: 2023-02-11 21:26:42
+ * @LastEditTime: 2023-02-13 22:14:57
  * @LastEditors: jinli
  * @Description: 
  * @FilePath: \reactreview\.umirc.ts
@@ -51,7 +51,7 @@ export default defineConfig({
         },
         {
           path: '/form',
-          name: '测试',
+          name: '测试222',
           exact: true,
           icon: 'SettingOutlined',
           component: '@/pages/form'
