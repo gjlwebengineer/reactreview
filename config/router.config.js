@@ -1,7 +1,7 @@
 /*
  * @Author: jinli
  * @Date: 2023-02-09 10:25:14
- * @LastEditTime: 2023-02-12 15:24:53
+ * @LastEditTime: 2023-02-13 22:13:51
  * @LastEditors: jinli
  * @Description: 
  * @FilePath: \reactreview\config\router.config.js
@@ -34,7 +34,7 @@ const routerConfig = [ //umi 的路由基于 react-router@5 实现，配置和 r
       },
       {
         path: '/form',
-        name: '测试111',
+        name: '测试222',
         exact: true,
         icon: 'SettingOutlined',
         component: '@/pages/form'
