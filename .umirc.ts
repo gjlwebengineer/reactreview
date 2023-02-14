@@ -49,13 +49,6 @@ export default defineConfig({
           icon: 'SettingOutlined',
           component: '@/pages/form'
         },
-        {
-          path: '/form',
-          name: '测试222',
-          exact: true,
-          icon: 'SettingOutlined',
-          component: '@/pages/form'
-        }
       ]
     },
   ],
