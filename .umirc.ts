@@ -1,7 +1,7 @@
 /*
  * @Author: jinli
  * @Date: 2023-02-09 09:17:54
- * @LastEditTime: 2023-02-13 22:14:57
+ * @LastEditTime: 2023-02-15 20:10:39
  * @LastEditors: jinli
  * @Description: 
  * @FilePath: \reactreview\.umirc.ts
@@ -32,21 +32,21 @@ export default defineConfig({
           path: '/echarts',
           name: '图表',
           exact: true,
-          icon: 'SettingOutlined',
+          icon: 'AreaChartOutlined',
           component: '@/pages/echarts'
         },
         {
           path: '/table',
           name: '表格',
           exact: true,
-          icon: 'SettingOutlined',
+          icon: 'TableOutlined',
           component: '@/pages/table'
         },
         {
           path: '/form',
           name: '表单',
           exact: true,
-          icon: 'SettingOutlined',
+          icon: 'SketchOutlined',
           component: '@/pages/form'
         },
       ]
