@@ -1,10 +1,10 @@
 /*
  * @Author: jinli
  * @Date: 2023-02-09 11:10:41
- * @LastEditTime: 2023-02-10 11:30:45
+ * @LastEditTime: 2023-02-15 10:47:23
  * @LastEditors: jinli
  * @Description: 
- * @FilePath: \my-umi\src\components\MyChart\index.tsx
+ * @FilePath: \reactreview\src\components\MyChart\index.tsx
  */
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
 import * as echarts from 'echarts/core';
@@ -88,7 +88,7 @@ const MyChart: React.FC<MyChartProps> = ({ option, ref }) => {
   });
 
   return (
-    <div ref={cRef} style={{ width: 500, height: 300 }} />
+    <div ref={cRef} className='echartWrap' style={{ width: '100%', height: '100%' }} />
   );
 };
 

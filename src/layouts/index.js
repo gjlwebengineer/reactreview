@@ -1,10 +1,10 @@
 /*
  * @Author: jinli
  * @Date: 2023-02-09 09:42:52
- * @LastEditTime: 2023-02-09 11:28:56
+ * @LastEditTime: 2023-02-15 10:55:05
  * @LastEditors: jinli
  * @Description: 
- * @FilePath: \my-umi\src\layouts\index.js
+ * @FilePath: \reactreview\src\layouts\index.js
  */
 import React, { Fragment, useState } from 'react';
 import {
@@ -80,7 +80,7 @@ export default withRouter(({ children, location }) => {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <Layout>
+    <Layout className='layout'>
     <Sider trigger={null} collapsible collapsed={collapsed}>
       <div className="logo" />
       <Menu
@@ -104,10 +104,12 @@ export default withRouter(({ children, location }) => {
         style={{
           margin: '24px 16px',
           padding: 24,
-          minHeight: 280,
+          // minHeight: 280,
+          height: '100vh',
+          overflow:'scroll',
         }}
       >
-        <div>
+        <div style={{ width: '100%', height: '100%' }}>
           <Switch location={location}>{children.props.children}</Switch>
         </div>
       </Content>

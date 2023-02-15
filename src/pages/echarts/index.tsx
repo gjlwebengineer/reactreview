@@ -2,6 +2,8 @@ import React, { useRef } from 'react';
 import MyChart, { MyChartOption } from '@/components/MyChart';
 import datas from "../../../public/data.json"
 import tableData from '../../../public/life-expectancy-table.json'
+import { basepic } from './basepic'
+import './index.less'
 const MyPage: React.FC = () => {
   const updateFrequency = 2000;
   const dimension = 0;
@@ -166,18 +168,72 @@ const MyPage: React.FC = () => {
   }
 
   const option1 = {
-    xAxis: {
-      type: 'category',
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'shadow'
+      }
     },
-    yAxis: {
-      type: 'value'
+    legend: {
+      data: ['Profit', 'Expenses', 'Income']
     },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+    xAxis: [
+      {
+        type: 'value'
+      }
+    ],
+    yAxis: [
+      {
+        type: 'category',
+        axisTick: {
+          show: false
+        },
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+      }
+    ],
     series: [
       {
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
-        type: 'line',
-        smooth: true
+        name: 'Profit',
+        type: 'bar',
+        label: {
+          show: true,
+          position: 'inside'
+        },
+        emphasis: {
+          focus: 'series'
+        },
+        data: [200, 170, 240, 244, 200, 220, 210]
+      },
+      {
+        name: 'Income',
+        type: 'bar',
+        stack: 'Total',
+        label: {
+          show: true
+        },
+        emphasis: {
+          focus: 'series'
+        },
+        data: [320, 302, 341, 374, 390, 450, 420]
+      },
+      {
+        name: 'Expenses',
+        type: 'bar',
+        stack: 'Total',
+        label: {
+          show: true,
+          position: 'left'
+        },
+        emphasis: {
+          focus: 'series'
+        },
+        data: [-120, -132, -101, -134, -190, -230, -210]
       }
     ]
   } as MyChartOption;
@@ -187,17 +243,25 @@ const MyPage: React.FC = () => {
       elements: [
         {
           type: 'text',
+          // type: 'image',
           left: 'center',
-          top: 'center',
+          top: 'middle',
+          // top: 'calc(50 % - 115px)',
           style: {
-            text: 'Apache ECharts',
-            fontSize: 80,
+            text: 'welcome',
+            fontSize: 160,
             fontWeight: 'bold',
             lineDash: [0, 200],
             lineDashOffset: 0,
             fill: 'transparent',
             stroke: '#000',
-            lineWidth: 1
+            lineWidth: 1,
+            image: basepic,
+            // x: 200,
+            // y: 300,
+            // width: 330,
+            // height: 330,
+
           },
           keyframeAnimation: {
             duration: 3000,
@@ -275,7 +339,9 @@ const MyPage: React.FC = () => {
   return (
     <div className='echarts'>
       {/* <MyChart option={option} ref={childRef} /> */}
-      <MyChart option={option2} />
+      <div className='radialGradient'>
+        <MyChart option={option2} />
+      </div>
       <MyChart option={option3} />
       <MyChart option={option1} />
     </div>
