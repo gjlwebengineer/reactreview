@@ -1,7 +1,7 @@
 /*
  * @Author: jinli
  * @Date: 2023-02-09 11:10:41
- * @LastEditTime: 2023-02-15 10:47:23
+ * @LastEditTime: 2023-02-15 22:48:25
  * @LastEditors: jinli
  * @Description: 
  * @FilePath: \reactreview\src\components\MyChart\index.tsx
@@ -55,10 +55,11 @@ export type MyChartOption = echarts.ComposeOption<
   | TooltipComponentOption
   | LineSeriesOption
   | BarSeriesOption
+  | HTMLDivElement
 >;
 export interface MyChartProps {
   option: MyChartOption;
-  ref: MyChartOption;
+  ref?: MyChartOption;
 }
 const MyChart: React.FC<MyChartProps> = ({ option, ref }) => {
   const cRef = useRef<HTMLDivElement>(null);

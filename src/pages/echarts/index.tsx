@@ -105,7 +105,7 @@ const MyPage: React.FC = () => {
         seriesLayoutBy: 'column',
         type: 'bar',
         itemStyle: {
-          color: function (param) {
+          color: function (param: { value: number[]; }) {
             return countryColors[(param.value as number[])[3]] || '#5470c6';
           }
         },
