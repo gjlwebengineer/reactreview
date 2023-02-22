@@ -1,7 +1,7 @@
 /*
  * @Author: jinli
  * @Date: 2023-02-09 09:42:52
- * @LastEditTime: 2023-02-22 19:26:37
+ * @LastEditTime: 2023-02-23 00:16:57
  * @LastEditors: jinli
  * @Description:
  * @FilePath: \reactreview\src\layouts\index.js
@@ -14,9 +14,10 @@ import {
   UserOutlined,
   VideoCameraOutlined,
 } from '@ant-design/icons';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, message } from 'antd';
 import { withRouter, Switch, history } from 'umi';
 import * as Icon from '@ant-design/icons';
+import request from '@/utils/request';
 import routerConfig from '../../config/router.config.js';
 import './index.less';
 
@@ -111,6 +112,7 @@ const addMonitorPage = () => {
       window.timeStr = new Date().getTime();
       //发送监控数据
       console.table(result);
+      return result;
       // localStorage.clear("timestr")
       // alert("停留了"+localStorage.getItem("time")+"秒")
     });
@@ -126,9 +128,22 @@ export default withRouter(({ children, location }) => {
     setCurrent(e.key);
   };
   const [collapsed, setCollapsed] = useState(false);
-
   useEffect(() => {
-    addMonitorPage();
+    const result = addMonitorPage();
+    let host = 'cn-heyuan.log.aliyuncs.com';
+    let project = 'aliyun-product-data-1290724108777000-cn-heyuan';
+    const logstoreName = 'guanguan-logstore';
+    const params = { ...result };
+    request
+      .post(`${host}.${project}/logstores/${logstoreName}/track`, { ...params })
+      .then((res) => {
+        const { code, value } = res;
+        // if (code === '200') {
+        //   console.log('请求成功')
+        // } else {
+        //   message.error('请求失败');
+        // }
+      });
   }, []);
   return (
     <Layout className="layout">
