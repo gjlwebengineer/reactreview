@@ -1,12 +1,12 @@
 /*
  * @Author: jinli
  * @Date: 2023-02-09 09:42:52
- * @LastEditTime: 2023-02-15 10:55:05
+ * @LastEditTime: 2023-02-22 19:26:37
  * @LastEditors: jinli
  * @Description:
  * @FilePath: \reactreview\src\layouts\index.js
  */
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -67,6 +67,57 @@ const CreateMenu = () => {
   const { routes } = levelOne;
   return <Fragment>{getMenu(routes)}</Fragment>;
 };
+/**
+ * @des 监控用户行为（界面停留时间） #详情可以看 html/monitor
+ */
+const addMonitorPage = () => {
+  try {
+    window.addEventListener('pageshow', () => {
+      window.timeStr = new Date().getTime();
+      // alert("开始监控")
+    });
+    window.addEventListener('load', () => {
+      window.timeStr = new Date().getTime();
+      // alert("开始监控")
+    });
+    window.addEventListener('pagehide', () => {
+      let t = (new Date().getTime() - window.timeStr) / 1000;
+      localStorage.setItem('time', t);
+      window.timeStr = new Date().getTime();
+      let result = {
+        curTime: new Date(),
+        url: window.location.href,
+        stayTime: localStorage.getItem('time'),
+      };
+      //重置数据
+      window.timeStr = new Date().getTime();
+      //发送监控数据
+      console.table(result);
+      // localStorage.clear("timestr")
+      // alert("停留了"+localStorage.getItem("time")+"秒")
+    });
+
+    // onhashchange 好像是vue的
+    window.addEventListener('hashchange', () => {
+      let t = (new Date().getTime() - window.timeStr) / 1000;
+      localStorage.setItem('time', t);
+      window.timeStr = new Date().getTime();
+      let result = {
+        curTime: new Date(),
+        url: window.location.href,
+        stayTime: localStorage.getItem('time'),
+      };
+      //重置数据
+      window.timeStr = new Date().getTime();
+      //发送监控数据
+      console.table(result);
+      // localStorage.clear("timestr")
+      // alert("停留了"+localStorage.getItem("time")+"秒")
+    });
+  } catch (error) {
+    console.log('性能信息上报异常', error);
+  }
+};
 
 export default withRouter(({ children, location }) => {
   const [current, setCurrent] = useState('');
@@ -76,6 +127,9 @@ export default withRouter(({ children, location }) => {
   };
   const [collapsed, setCollapsed] = useState(false);
 
+  useEffect(() => {
+    addMonitorPage();
+  }, []);
   return (
     <Layout className="layout">
       <Sider trigger={null} collapsible collapsed={collapsed}>
