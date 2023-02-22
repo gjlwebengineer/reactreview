@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 import MyChart, { MyChartOption } from '@/components/MyChart';
-import datas from "../../../public/data.json"
-import tableData from '../../../public/life-expectancy-table.json'
-import { basepic } from './basepic'
-import './index.less'
+import datas from '../../../public/data.json';
+import tableData from '../../../public/life-expectancy-table.json';
+import { basepic } from './basepic';
+import './index.less';
 const MyPage: React.FC = () => {
   const updateFrequency = 2000;
   const dimension = 0;
@@ -30,7 +30,7 @@ const MyPage: React.FC = () => {
     Russia: '#d52b1e',
     Turkey: '#e30a17',
     'United Kingdom': '#00247d',
-    'United States': '#b22234'
+    'United States': '#b22234',
   };
 
   interface Flag {
@@ -64,20 +64,20 @@ const MyPage: React.FC = () => {
       top: 10,
       bottom: 30,
       left: 150,
-      right: 80
+      right: 80,
     },
     xAxis: {
       max: 'dataMax',
       axisLabel: {
         formatter: function (n: number) {
           return Math.round(n) + '';
-        }
-      }
+        },
+      },
     },
     dataset: {
       source: data.slice(1).filter(function (d: (string | number)[]) {
         return d[4] === startYear;
-      })
+      }),
     },
     yAxis: {
       type: 'category',
@@ -92,12 +92,12 @@ const MyPage: React.FC = () => {
         rich: {
           flag: {
             fontSize: 25,
-            padding: 5
-          }
-        }
+            padding: 5,
+          },
+        },
       },
       animationDuration: 300,
-      animationDurationUpdate: 300
+      animationDurationUpdate: 300,
     },
     series: [
       {
@@ -105,22 +105,22 @@ const MyPage: React.FC = () => {
         seriesLayoutBy: 'column',
         type: 'bar',
         itemStyle: {
-          color: function (param: { value: number[]; }) {
+          color: function (param: { value: number[] }) {
             return countryColors[(param.value as number[])[3]] || '#5470c6';
-          }
+          },
         },
         encode: {
           x: dimension,
-          y: 3
+          y: 3,
         },
         label: {
           show: true,
           precision: 1,
           position: 'right',
           valueAnimation: true,
-          fontFamily: 'monospace'
-        }
-      }
+          fontFamily: 'monospace',
+        },
+      },
     ],
     // Disable init animation.
     animationDuration: 0,
@@ -136,12 +136,12 @@ const MyPage: React.FC = () => {
           style: {
             text: startYear,
             font: 'bolder 80px monospace',
-            fill: 'rgba(100, 100, 100, 0.25)'
+            fill: 'rgba(100, 100, 100, 0.25)',
           },
-          z: 100
-        }
-      ]
-    }
+          z: 100,
+        },
+      ],
+    },
   } as MyChartOption;
 
   // console.log(option);
@@ -156,7 +156,7 @@ const MyPage: React.FC = () => {
     })(i);
   }
 
-  function updateYear(year: (string | number)) {
+  function updateYear(year: string | number) {
     let source = data.slice(1).filter(function (d: (string | number)[]) {
       return d[4] === year;
     });
@@ -164,38 +164,38 @@ const MyPage: React.FC = () => {
     (option as any).graphic.elements[0].style.text = year;
     // myChart.setOption<echarts.EChartsOption>(option);
     // childRef?.current?.cInstance?.setOption(option);
-    console.log(childRef);
+    // console.log(childRef);
   }
 
   const option1 = {
     tooltip: {
       trigger: 'axis',
       axisPointer: {
-        type: 'shadow'
-      }
+        type: 'shadow',
+      },
     },
     legend: {
-      data: ['Profit', 'Expenses', 'Income']
+      data: ['Profit', 'Expenses', 'Income'],
     },
     grid: {
       left: '3%',
       right: '4%',
       bottom: '3%',
-      containLabel: true
+      containLabel: true,
     },
     xAxis: [
       {
-        type: 'value'
-      }
+        type: 'value',
+      },
     ],
     yAxis: [
       {
         type: 'category',
         axisTick: {
-          show: false
+          show: false,
         },
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-      }
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      },
     ],
     series: [
       {
@@ -203,24 +203,24 @@ const MyPage: React.FC = () => {
         type: 'bar',
         label: {
           show: true,
-          position: 'inside'
+          position: 'inside',
         },
         emphasis: {
-          focus: 'series'
+          focus: 'series',
         },
-        data: [200, 170, 240, 244, 200, 220, 210]
+        data: [200, 170, 240, 244, 200, 220, 210],
       },
       {
         name: 'Income',
         type: 'bar',
         stack: 'Total',
         label: {
-          show: true
+          show: true,
         },
         emphasis: {
-          focus: 'series'
+          focus: 'series',
         },
-        data: [320, 302, 341, 374, 390, 450, 420]
+        data: [320, 302, 341, 374, 390, 450, 420],
       },
       {
         name: 'Expenses',
@@ -228,14 +228,14 @@ const MyPage: React.FC = () => {
         stack: 'Total',
         label: {
           show: true,
-          position: 'left'
+          position: 'left',
         },
         emphasis: {
-          focus: 'series'
+          focus: 'series',
         },
-        data: [-120, -132, -101, -134, -190, -230, -210]
-      }
-    ]
+        data: [-120, -132, -101, -134, -190, -230, -210],
+      },
+    ],
   } as MyChartOption;
 
   const option2 = {
@@ -261,7 +261,6 @@ const MyPage: React.FC = () => {
             // y: 300,
             // width: 330,
             // height: 330,
-
           },
           keyframeAnimation: {
             duration: 3000,
@@ -272,27 +271,27 @@ const MyPage: React.FC = () => {
                 style: {
                   fill: 'transparent',
                   lineDashOffset: 200,
-                  lineDash: [200, 0]
-                }
+                  lineDash: [200, 0],
+                },
               },
               {
                 // Stop for a while.
                 percent: 0.8,
                 style: {
-                  fill: 'transparent'
-                }
+                  fill: 'transparent',
+                },
               },
               {
                 percent: 1,
                 style: {
-                  fill: 'black'
-                }
-              }
-            ]
-          }
-        }
-      ]
-    }
+                  fill: 'black',
+                },
+              },
+            ],
+          },
+        },
+      ],
+    },
   } as MyChartOption;
 
   const option3 = {
@@ -309,10 +308,10 @@ const MyPage: React.FC = () => {
               x: 0,
               y: -40,
               width: 10,
-              height: 80
+              height: 80,
             },
             style: {
-              fill: '#5470c6'
+              fill: '#5470c6',
             },
             keyframeAnimation: {
               duration: 1000,
@@ -322,30 +321,30 @@ const MyPage: React.FC = () => {
                 {
                   percent: 0.5,
                   scaleY: 0.3,
-                  easing: 'cubicIn'
+                  easing: 'cubicIn',
                 },
                 {
                   percent: 1,
                   scaleY: 1,
-                  easing: 'cubicOut'
-                }
-              ]
-            }
-          }))
-        }
-      ]
-    }
+                  easing: 'cubicOut',
+                },
+              ],
+            },
+          })),
+        },
+      ],
+    },
   } as MyChartOption;
   return (
-    <div className='echarts'>
+    <div className="echarts">
       {/* <MyChart option={option} ref={childRef} /> */}
-      <div className='radialGradient'>
+      <div className="radialGradient">
         <MyChart option={option2} />
       </div>
       <MyChart option={option3} />
       <MyChart option={option1} />
     </div>
   );
-}
+};
 
 export default MyPage;

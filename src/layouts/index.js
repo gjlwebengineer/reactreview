@@ -3,7 +3,7 @@
  * @Date: 2023-02-09 09:42:52
  * @LastEditTime: 2023-02-15 10:55:05
  * @LastEditors: jinli
- * @Description: 
+ * @Description:
  * @FilePath: \reactreview\src\layouts\index.js
  */
 import React, { Fragment, useState } from 'react';
@@ -18,10 +18,9 @@ import { Layout, Menu } from 'antd';
 import { withRouter, Switch, history } from 'umi';
 import * as Icon from '@ant-design/icons';
 import routerConfig from '../../config/router.config.js';
-import './index.less'
+import './index.less';
 
 const { Header, Sider, Content } = Layout;
-
 
 const { SubMenu } = Menu;
 // 创建icon
@@ -39,7 +38,7 @@ const getSubMenu = (routesData) => {
 };
 // 获取菜单 此处只遍历了2层，应该使用深度优先或广度优先算法对路由配置结构进行处理
 const getMenu = (routesData) => {
-  console.log(routesData);
+  // console.log(routesData);
   const menuData = [];
   for (let i = 0; i < routesData.length; i += 1) {
     if (Object.prototype.hasOwnProperty.call(routesData[i], 'routes')) {
@@ -64,12 +63,10 @@ const getMenu = (routesData) => {
 };
 const CreateMenu = () => {
   const [levelOne] = routerConfig;
-  console.log(levelOne);
+  // console.log(levelOne);
   const { routes } = levelOne;
   return <Fragment>{getMenu(routes)}</Fragment>;
 };
-
-
 
 export default withRouter(({ children, location }) => {
   const [current, setCurrent] = useState('');
@@ -80,40 +77,44 @@ export default withRouter(({ children, location }) => {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <Layout className='layout'>
-    <Sider trigger={null} collapsible collapsed={collapsed}>
-      <div className="logo" />
-      <Menu
-            theme="dark"
-            mode="inline"
-            defaultSelectedKeys={['1']}
-            onClick={handleClick}
-            selectedKeys={[current]}>
-            {CreateMenu()}
-          </Menu>
-    </Sider>
-    <Layout className="site-layout">
-      <Header className="site-layout-background" style={{ padding: 0 }}>
-        {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-          className: 'trigger',
-          onClick: () => setCollapsed(!collapsed),
-        })}
-      </Header>
-      <Content
-        className="site-layout-background"
-        style={{
-          margin: '24px 16px',
-          padding: 24,
-          // minHeight: 280,
-          height: '100vh',
-          overflow:'scroll',
-        }}
-      >
-        <div style={{ width: '100%', height: '100%' }}>
-          <Switch location={location}>{children.props.children}</Switch>
-        </div>
-      </Content>
+    <Layout className="layout">
+      <Sider trigger={null} collapsible collapsed={collapsed}>
+        <div className="logo" />
+        <Menu
+          theme="dark"
+          mode="inline"
+          defaultSelectedKeys={['1']}
+          onClick={handleClick}
+          selectedKeys={[current]}
+        >
+          {CreateMenu()}
+        </Menu>
+      </Sider>
+      <Layout className="site-layout">
+        <Header className="site-layout-background" style={{ padding: 0 }}>
+          {React.createElement(
+            collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
+            {
+              className: 'trigger',
+              onClick: () => setCollapsed(!collapsed),
+            },
+          )}
+        </Header>
+        <Content
+          className="site-layout-background"
+          style={{
+            margin: '24px 16px',
+            padding: 24,
+            // minHeight: 280,
+            height: '100vh',
+            overflow: 'scroll',
+          }}
+        >
+          <div style={{ width: '100%', height: '100%' }}>
+            <Switch location={location}>{children.props.children}</Switch>
+          </div>
+        </Content>
+      </Layout>
     </Layout>
-  </Layout>
   );
 });
