@@ -1,14 +1,16 @@
 /*
  * @Author: jinli
  * @Date: 2023-02-09 10:08:44
- * @LastEditTime: 2023-02-09 10:09:43
+ * @LastEditTime: 2023-02-22 16:48:25
  * @LastEditors: jinli
- * @Description: 
- * @FilePath: \my-umi\src\pages\table\index.tsx
+ * @Description:
+ * @FilePath: \reactreview\src\pages\table\index.tsx
  */
-import React from 'react';
+import React, { useState } from 'react';
 import { Space, Table, Tag } from 'antd';
+import Sortable from 'sortablejs';
 import type { ColumnsType } from 'antd/es/table';
+import MyPanel from '@/components/MyPanel';
 
 interface DataType {
   key: string;
@@ -91,6 +93,46 @@ const data: DataType[] = [
   },
 ];
 
-const Tables: React.FC = () => <Table columns={columns} dataSource={data} />;
+const Tables: React.FC = () => {
+  const [dataSource, setDataSource] = useState<any>([...data]);
+  // 拖拽初始化及逻辑
+  const sortableTable = () => {
+    // const { dispatch } = this.props; //不使用dva，可忽略
+    const tab = document.getElementsByClassName('goodsTable');
+    const el = tab[0].getElementsByClassName(
+      'ant-table-tbody',
+    )[0] as HTMLElement;
+    Sortable.create(el, {
+      animation: 100, // 动画参数
+      onEnd(evt: any) {
+        // 拖拽完毕之后发生，只需关注该事件
+        const menuArr = [...data]; // 主菜单数组
+        // Array.splice(指定修改的开始位置,要移除的个数,要添加进数组的元素)----语法
+        // 先把拖拽元素的位置删除 再新的位置添加进旧的元素
+        const oldEl = menuArr.splice(evt.oldIndex, 1);
+        menuArr.splice(evt.newIndex, 0, oldEl[0]);
+        setDataSource(menuArr);
+      },
+    });
+  };
+  return (
+    <MyPanel>
+      <MyPanel.Header>
+        <span>默认表格</span>
+      </MyPanel.Header>
+      <Table columns={columns} dataSource={data} />
+      <MyPanel.Header>
+        <span>可拖拽表格</span>
+      </MyPanel.Header>
+      <div className="goodsTable" ref={sortableTable}>
+        <Table
+          columns={columns}
+          dataSource={dataSource}
+          style={{ cursor: 'pointer' }}
+        />
+      </div>
+    </MyPanel>
+  );
+};
 
 export default Tables;

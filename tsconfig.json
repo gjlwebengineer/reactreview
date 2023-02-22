@@ -12,7 +12,8 @@
     "strict": true,
     "paths": {
       "@/*": ["src/*"],
-      "@@/*": ["src/.umi/*"]
+      "@@/*": ["src/.umi/*"],
+      "components": ["src/components/*"]
     },
     "allowSyntheticDefaultImports": true
   },
@@ -21,7 +22,8 @@
     "src/**/*",
     "config/**/*",
     ".umirc.ts",
-    "typings.d.ts"
+    "typings.d.ts",
+    "**/*.tsx"
   ],
   "exclude": [
     "node_modules",
