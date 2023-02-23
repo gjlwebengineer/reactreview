@@ -1,7 +1,7 @@
 /*
  * @Author: jinli
  * @Date: 2023-02-09 09:42:52
- * @LastEditTime: 2023-02-23 00:38:47
+ * @LastEditTime: 2023-02-23 09:42:19
  * @LastEditors: jinli
  * @Description:
  * @FilePath: \reactreview\src\layouts\index.js
@@ -130,13 +130,15 @@ export default withRouter(({ children, location }) => {
   const [collapsed, setCollapsed] = useState(false);
   useEffect(() => {
     const result = { a: '上报的数据' };
-    let host = 'cn-heyuan.log.aliyuncs.com';
-    let project = 'aliyun-product-data-1290724108777000-cn-heyuan';
-    const logstoreName = 'guanguan-logstore';
+    let host = 'cn-shanghai.log.aliyuncs.com';
+    let project = 'jinliproject';
+    const logstoreName = 'jinlilogstore';
     const params = { ...result };
     console.log(params);
     request
-      .post(`${host}.${project}/logstores/${logstoreName}/track`, { ...params })
+      .post(`http://${project}.${host}/logstores/${logstoreName}/track`, {
+        ...params,
+      })
       .then((res) => {
         const { code, value } = res;
         // if (code === '200') {
