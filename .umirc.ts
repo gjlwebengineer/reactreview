@@ -1,7 +1,7 @@
 /*
  * @Author: jinli
  * @Date: 2023-02-09 09:17:54
- * @LastEditTime: 2023-02-23 10:47:41
+ * @LastEditTime: 2023-02-23 15:04:47
  * @LastEditors: jinli
  * @Description:
  * @FilePath: \reactreview\.umirc.ts
@@ -66,7 +66,7 @@ export default defineConfig({
     hmr: false, // 表示是否启用 dva model 的热更新
   },
   proxy: {
-    'http://47.100.38.90': {
+    '/api': {
       target: 'http://jinliproject.cn-shanghai.log.aliyuncs.com',
       changeOrigin: true,
       pathRewrite: { '^/api': '' },

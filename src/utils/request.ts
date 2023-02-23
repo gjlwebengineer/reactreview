@@ -188,8 +188,30 @@ const filter = (axiosInstance: {
         arg1: (error: any) => Promise<never>,
       ) => void;
     };
+    request: {
+      use: (
+        arg0: (request: any) => any,
+        arg1: (error: any) => Promise<never>,
+      ) => void;
+    };
   };
 }) => {
+  axiosInstance.interceptors.request.use(
+    (request) => {
+      // 对请求数据做点什么
+      const { headers } = request;
+      headers['Access-Control-Allow-Origin'] = '*';
+      headers['Access-Control-Allow-Headers'] = 'X-Requested-With';
+      headers['Access-Control-Allow-Methods'] = 'GET,POST,get,post,OPTIONS';
+      headers['Content-Type'] = 'application/json';
+      headers['x-log-apiversion'] = '0.6.0';
+      // headers['x-log-bodyrawsize'] = ''
+      return request;
+    },
+    (error) => {
+      return Promise.reject(error);
+    },
+  );
   axiosInstance.interceptors.response.use(
     (response) => {
       // console.log('response: ', response);
@@ -223,14 +245,14 @@ const filter = (axiosInstance: {
 
 const config = {
   withCredentials: true,
-  baseURL: '/',
+  baseURL: '/api',
   timeout: 30000,
 };
 const request = new Request(axios, config, filter);
 
 const config2 = {
   withCredentials: true,
-  baseURL: 'https://sls.ali-test-project.cn-hangzhou.log.aliyuncs.com',
+  baseURL: '/api',
   timeout: 30000,
 };
 
