@@ -1,7 +1,7 @@
 /*
  * @Author: jinli
  * @Date: 2023-02-09 09:17:54
- * @LastEditTime: 2023-02-23 15:04:47
+ * @LastEditTime: 2023-02-26 23:23:02
  * @LastEditors: jinli
  * @Description:
  * @FilePath: \reactreview\.umirc.ts
@@ -65,11 +65,20 @@ export default defineConfig({
     immer: true, // 表示是否启用 immer 以方便修改 reducer
     hmr: false, // 表示是否启用 dva model 的热更新
   },
-  proxy: {
-    '/api': {
-      target: 'http://jinliproject.cn-shanghai.log.aliyuncs.com',
-      changeOrigin: true,
-      pathRewrite: { '^/api': '' },
+  proxy: [
+    {
+      '/api': {
+        target: 'http://jinliproject.cn-shanghai.log.aliyuncs.com',
+        changeOrigin: true,
+        pathRewrite: { '^/api': '' },
+      },
     },
-  },
+    {
+      '/47.100.38.90/api': {
+        target: 'http://jinliproject.cn-shanghai.log.aliyuncs.com',
+        changeOrigin: true,
+        pathRewrite: { '^/47.100.38.90/api': '' },
+      },
+    },
+  ],
 });
