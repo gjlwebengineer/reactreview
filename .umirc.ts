@@ -66,15 +66,15 @@ export default defineConfig({
     hmr: false, // 表示是否启用 dva model 的热更新
   },
   proxy: {
-    '/api': {
+    '/logstores': {
       target: 'http://jinliproject.cn-shanghai.log.aliyuncs.com',
       changeOrigin: true,
-      pathRewrite: { '^/api': '' },
+      // pathRewrite: { '^/api': '' },
     },
-    '/': {
-      target: 'http://jinliproject.cn-shanghai.log.aliyuncs.com',
-      changeOrigin: true,
-      pathRewrite: { '^/api': '' },
-    },
+    // '/': {
+    //   target: 'http://jinliproject.cn-shanghai.log.aliyuncs.com',
+    //   changeOrigin: true,
+    //   pathRewrite: { '^/api': '' },
+    // },
   },
 });

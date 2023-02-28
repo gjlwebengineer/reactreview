@@ -245,14 +245,14 @@ const filter = (axiosInstance: {
 
 const config = {
   withCredentials: true,
-  baseURL: '/api',
+  baseURL: '',
   timeout: 30000,
 };
 const request = new Request(axios, config, filter);
 
 const config2 = {
   withCredentials: true,
-  baseURL: '/api',
+  baseURL: '',
   timeout: 30000,
 };
 
