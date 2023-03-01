@@ -1,7 +1,7 @@
 /*
  * @Author: jinli
  * @Date: 2023-02-09 09:17:54
- * @LastEditTime: 2023-02-28 22:15:57
+ * @LastEditTime: 2023-03-01 11:38:00
  * @LastEditors: jinli
  * @Description:
  * @FilePath: \reactreview\.umirc.ts
@@ -66,15 +66,11 @@ export default defineConfig({
     hmr: false, // 表示是否启用 dva model 的热更新
   },
   proxy: {
-    '/logstores': {
-      target: 'http://jinliproject.cn-shanghai.log.aliyuncs.com',
+    '/api': {
+      // target: 'http://jinliproject.cn-shanghai.log.aliyuncs.com',
+      target: 'http://localhost:8000',
       changeOrigin: true,
-      // pathRewrite: { '^/api': '' },
+      pathRewrite: { '^/api': '' },
     },
-    // '/': {
-    //   target: 'http://jinliproject.cn-shanghai.log.aliyuncs.com',
-    //   changeOrigin: true,
-    //   pathRewrite: { '^/api': '' },
-    // },
   },
 });
